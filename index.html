@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Revou Jakarta Demo FE</title>
+  </head>
+  <body>
+    <h1 id="name">Placeholder Nama Produk</h1>
+    <p id="price">Placeholder Harga Produk</p>
+
+    <img id="product_img" src="" alt="Sepatu" style="width: 100px" />
+
+    <script>
+      // named function
+      const loadProductData = () => {
+        fetch("http://localhost:3000")
+          .then((response) => {
+            return response.json();
+          })
+          .then((responseJson) => {
+            const { image_url, price, product_name } = responseJson.data;
+
+            for (let i = 1; i < responseJson.data.length; i++) {
+              responseJson.data[i];
+            }
+
+            document.getElementById("name").innerText = product_name;
+            document.getElementById("price").innerText = price;
+            document
+              .getElementById("product_img")
+              .setAttribute("src", image_url);
+          });
+      };
+
+      loadProductData();
+    </script>
+  </body>
+</html>
